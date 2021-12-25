@@ -1,8 +1,8 @@
-import { Wrapper, Title } from "../Section/Section.styled";
+import { Wrapper, SectionTitle } from "../Section/Section.styled";
 
 const Section = ({ title, children }) => (
   <Wrapper>
-    <Title> {title} </Title>
+    <SectionTitle> {title} </SectionTitle>
     {children}
   </Wrapper>
 );

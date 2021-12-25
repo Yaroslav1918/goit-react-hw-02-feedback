@@ -1,42 +1,40 @@
 import React from "react";
-import { StatisticsButton, Title } from "../Statistics/Statistics.styled";
+import {
+  FeedbackButton,
+  FeedbackTitle,
+} from "../FeedbackOptions/FeedbackOptions.styled";
 
-const FeedbackOptions = ({
-  onClickGButton,
-  onClickBButton,
-  onClickNButton,
-  onShow,
-}) => (
-  <React.Fragment>
-    <Title>Please live feedback</Title>
-    <StatisticsButton
+const FeedbackOptions = ({ onClickButton, onShow }) => (
+  <>
+    <FeedbackTitle>Please live feedback</FeedbackTitle>
+    <FeedbackButton
       type="button"
       onClick={() => {
         onShow();
-        onClickGButton();
+        onClickButton("good");
       }}
     >
       Good
-    </StatisticsButton>
-    <StatisticsButton
+    </FeedbackButton>
+    <FeedbackButton
       type="button"
       onClick={() => {
         onShow();
-        onClickNButton();
+        onClickButton("neutral");
       }}
     >
       Neutral
-    </StatisticsButton>
-    <StatisticsButton
+    </FeedbackButton>
+    <FeedbackButton
       type="button"
       onClick={() => {
         onShow();
-        onClickBButton();
+        onClickButton("bad");
       }}
     >
       Bad
-    </StatisticsButton>
-  </React.Fragment>
+    </FeedbackButton>
+  </>
 );
 
 export default FeedbackOptions;

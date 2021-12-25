@@ -1,49 +1,49 @@
 import React from "react";
 import Notification from "../Notification";
 import {
-  List,
-  ListItem,
-  Title,
-  Paragraph,
+  StatList,
+  StatItem,
+  StatTitle,
+  StatParagraph,
 } from "../Statistics/Statistics.styled";
 
 const Statistics = ({
-  good,
-  neutral,
-  bad,
+  goodValue,
+  neutralValue,
+  badValue,
   state,
   oncountPositiveFeedbackPercentage,
   oncountTotalFeedback,
 }) => (
   <React.Fragment>
-    <Title>Statistics</Title>
+    <StatTitle>Statistics</StatTitle>
 
     {state.visible ? (
-      <List>
-        <ListItem>
-          <Paragraph>Good:{good} </Paragraph>
-        </ListItem>
-        <ListItem>
-          <Paragraph>Neutral:{neutral}</Paragraph>
-        </ListItem>
-        <ListItem>
-          <Paragraph>Bad:{bad}</Paragraph>
-        </ListItem>
-        <ListItem>
-          <Paragraph>Total:{oncountTotalFeedback(state)}</Paragraph>
-        </ListItem>
-        <ListItem>
-          <Paragraph>
+      <StatList>
+        <StatItem>
+          <StatParagraph>Good:{goodValue} </StatParagraph>
+        </StatItem>
+        <StatItem>
+          <StatParagraph>Neutral:{neutralValue}</StatParagraph>
+        </StatItem>
+        <StatItem>
+          <StatParagraph>Bad:{badValue}</StatParagraph>
+        </StatItem>
+        <StatItem>
+          <StatParagraph>Total:{oncountTotalFeedback(state)}</StatParagraph>
+        </StatItem>
+        <StatItem>
+          <StatParagraph>
             Positive feedback:{" "}
-            {good === 0
+            {goodValue === 0
               ? 0
               : oncountPositiveFeedbackPercentage(
-                  (good * 100) / oncountTotalFeedback(state)
+                  (goodValue * 100) / oncountTotalFeedback(state)
                 )}{" "}
             %
-          </Paragraph>
-        </ListItem>
-      </List>
+          </StatParagraph>
+        </StatItem>
+      </StatList>
     ) : (
       <Notification message="There is no feedback" />
     )}
