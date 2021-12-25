@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   FeedbackButton,
   FeedbackTitle,
@@ -36,5 +37,8 @@ const FeedbackOptions = ({ onClickButton, onShow }) => (
     </FeedbackButton>
   </>
 );
-
+FeedbackOptions.propTypes = {
+  onClickButton: PropTypes.func.isRequired,
+  onShow: PropTypes.func.isRequired,
+};
 export default FeedbackOptions;

@@ -1,5 +1,6 @@
 import React from "react";
 import Notification from "../Notification";
+import PropTypes from "prop-types";
 import {
   StatList,
   StatItem,
@@ -15,7 +16,7 @@ const Statistics = ({
   oncountPositiveFeedbackPercentage,
   oncountTotalFeedback,
 }) => (
-  <React.Fragment>
+  <>
     <StatTitle>Statistics</StatTitle>
 
     {state.visible ? (
@@ -47,7 +48,15 @@ const Statistics = ({
     ) : (
       <Notification message="There is no feedback" />
     )}
-  </React.Fragment>
+  </>
 );
 
+Statistics.propTypes = {
+  goodValue: PropTypes.number.isRequired,
+  badValue: PropTypes.number.isRequired,
+  neutralValue: PropTypes.number.isRequired,
+  oncountPositiveFeedbackPercentage: PropTypes.func.isRequired,
+  oncountTotalFeedback: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
+};
 export default Statistics;
