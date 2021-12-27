@@ -9,42 +9,43 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    positiveFeedback: 0,
-    visible: false,
   };
+
   setValue = (key) => {
     this.setState((state) => ({
       [key]: state[key] + 1,
     }));
   };
-  onShow = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-  countPositiveFeedbackPercentage = (value) => {
-    return Math.trunc(value);
+
+  countPositiveFeedbackPercentage = () => {
+    const { good } = this.state;
+    const total = this.countTotalFeedback();
+    return Math.trunc((good * 100) / total);
   };
 
-  countTotalFeedback = (state) => {
+  countTotalFeedback = () => {
+    const state = this.state;
     return Object.values(state).reduce((acc, value) => acc + value, 0);
   };
+
   render() {
+    const state = Object.keys(this.state);
+    const { good, neutral, bad } = this.state;
+    const total = this.countTotalFeedback();
+    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
     return (
       <>
         <GlobalStyle />
-        <Section title="">
-          <FeedbackOptions onClickButton={this.setValue} onShow={this.onShow} />
+        <Section title="Please live feedback">
+          <FeedbackOptions onLeaveFeedback={this.setValue} options={state} />
 
           <Statistics
-            goodValue={this.state.good}
-            neutralValue={this.state.neutral}
-            badValue={this.state.bad}
-            state={this.state}
-            oncountPositiveFeedbackPercentage={
-              this.countPositiveFeedbackPercentage
-            }
-            oncountTotalFeedback={this.countTotalFeedback}
+            goodValue={good}
+            neutralValue={neutral}
+            badValue={bad}
+            state={state}
+            positivePercentage={positiveFeedbackPercentage}
+            total={total}
           />
         </Section>
       </>

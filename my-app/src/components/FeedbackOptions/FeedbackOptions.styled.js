@@ -32,4 +32,10 @@ export const FeedbackButton = styled.button`
     margin-right: 5px;
   }
 `;
-export const FeedbackTitle = styled.h2``;
+export const ListButton = styled.ul`
+  display: flex;
+  & li:not(last-child) {
+    margin-right: 10px;
+  }
+`;
+export const ListItem = styled.li``;

@@ -12,14 +12,13 @@ const Statistics = ({
   goodValue,
   neutralValue,
   badValue,
-  state,
-  oncountPositiveFeedbackPercentage,
-  oncountTotalFeedback,
+  positivePercentage,
+  total,
 }) => (
   <>
     <StatTitle>Statistics</StatTitle>
 
-    {state.visible ? (
+    {total >= 1 ? (
       <StatList>
         <StatItem>
           <StatParagraph>Good:{goodValue} </StatParagraph>
@@ -31,17 +30,12 @@ const Statistics = ({
           <StatParagraph>Bad:{badValue}</StatParagraph>
         </StatItem>
         <StatItem>
-          <StatParagraph>Total:{oncountTotalFeedback(state)}</StatParagraph>
+          <StatParagraph>Total:{total}</StatParagraph>
         </StatItem>
         <StatItem>
           <StatParagraph>
-            Positive feedback:{" "}
-            {goodValue === 0
-              ? 0
-              : oncountPositiveFeedbackPercentage(
-                  (goodValue * 100) / oncountTotalFeedback(state)
-                )}{" "}
-            %
+            Positive feedback:
+            {goodValue === 0 ? 0 : positivePercentage}%
           </StatParagraph>
         </StatItem>
       </StatList>
@@ -55,8 +49,7 @@ Statistics.propTypes = {
   goodValue: PropTypes.number.isRequired,
   badValue: PropTypes.number.isRequired,
   neutralValue: PropTypes.number.isRequired,
-  oncountPositiveFeedbackPercentage: PropTypes.func.isRequired,
-  oncountTotalFeedback: PropTypes.func.isRequired,
-  state: PropTypes.object.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
 };
 export default Statistics;
